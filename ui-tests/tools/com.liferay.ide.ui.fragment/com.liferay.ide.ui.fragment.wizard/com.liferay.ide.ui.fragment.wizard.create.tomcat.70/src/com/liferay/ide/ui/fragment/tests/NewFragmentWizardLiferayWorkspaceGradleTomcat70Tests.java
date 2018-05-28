@@ -58,7 +58,7 @@ public class NewFragmentWizardLiferayWorkspaceGradleTomcat70Tests extends NewFra
 		super.createFragmentWithPortletProperites();
 	}
 
-	@Ignore("ignore as unstable, need more research")
+	//@Ignore("ignore as unstable, need more research")
 	@Test
 	public void createFragmentWithResourceAction() {
 		super.createFragmentWithResourceAction();

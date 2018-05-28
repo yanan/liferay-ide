@@ -27,7 +27,7 @@ import org.junit.rules.RuleChain;
  * @author Lily Li
  * @author Ashley Yuan
  */
-@Ignore("ignore as the deleting maven workspace project")
+//@Ignore("ignore as the deleting maven workspace project")
 public class NewFragmentWizardLiferayWorkspaceMavenTomcat70Tests extends NewFragmentWizardLiferayWorkspaceMavenBase {
 
 	public static PureTomcat70Support tomcat = new PureTomcat70Support(bot);
