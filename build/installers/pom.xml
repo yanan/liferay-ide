@@ -33,6 +33,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <eclipse-site>http://download.eclipse.org/releases/photon/201806271001/</eclipse-site>
         <install-builder-executable>${install-builder-home}/bin/builder</install-builder-executable>
         <bundle-support-download-base>https://repository-cdn.liferay.com/nexus/content/groups/public/com/liferay/com.liferay.portal.tools.bundle.support</bundle-support-download-base>
         <bundle-support-name>com.liferay.portal.tools.bundle.support-3.2.5.jar</bundle-support-name>
