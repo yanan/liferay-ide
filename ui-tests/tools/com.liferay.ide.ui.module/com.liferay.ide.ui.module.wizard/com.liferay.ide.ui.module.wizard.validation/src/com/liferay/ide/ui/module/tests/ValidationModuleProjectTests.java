@@ -149,7 +149,7 @@ public class ValidationModuleProjectTests extends SwtbotBase {
 		wizardAction.cancel();
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void validateLoaction() {
 		String projectName = "test-location";
