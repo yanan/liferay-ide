@@ -39,7 +39,7 @@
                 <version>${tycho-version}</version>
                 <configuration>
                     <includeAllDependencies>false</includeAllDependencies>
-                    <finalName>liferay-ide-${unqualifiedVersion}.${buildQualifier}-updatesite</finalName>
+                    <finalName>liferay-ide-${unqualifiedVersion}.${timestamp}-updatesite</finalName>
                     <extraArtifactRepositoryProperties>
                         <p2.statsURI>https://usage-devtools.wedeploy.io/stats/p2/</p2.statsURI>
                     </extraArtifactRepositoryProperties>
@@ -83,6 +83,9 @@
                                 <ant antfile="${basedir}/bundle/build.xml">
                                     <target name="maven-build" />
                                 </ant>
+                                <echo message="${buildQualifier}" />
+                                <echo message="${timestamp}" />
+                                <echo message="${maven.build.timestamp}" />
                             </target>
                         </configuration>
                         <goals>
