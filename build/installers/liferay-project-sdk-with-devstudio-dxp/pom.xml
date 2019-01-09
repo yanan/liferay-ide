@@ -31,7 +31,7 @@
     <name>Liferay Project SDK with DevStudio DXP Installer</name>
 
     <properties>
-        <studio-installer-version>${timestamp}</studio-installer-version>
+        <studio-installer-version>${maven.build.timestamp}</studio-installer-version>
     </properties>
 
     <build>
