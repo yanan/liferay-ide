@@ -12,13 +12,33 @@
  * details.
  */
 
-package com.liferay.ide.upgrade.commands.ui.internal.sdk;
+package com.liferay.ide.upgrade.plan.ui.navigator;
+
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.viewers.LabelProvider;
 
 /**
  * @author Gregory Amerson
  */
-public class MigrateExistingPluginsToWorkspaceCommandKeys {
+public abstract class AbstractLabelProvider extends LabelProvider {
 
-	public static final String ID = "migrate_existing_plugins_to_workspace";
+	public AbstractLabelProvider() {
+		_imageRegistry = new ImageRegistry();
+
+		initalizeImageRegistry(_imageRegistry);
+	}
+
+	@Override
+	public void dispose() {
+		_imageRegistry.dispose();
+	}
+
+	protected ImageRegistry getImageRegistry() {
+		return _imageRegistry;
+	}
+
+	protected abstract void initalizeImageRegistry(ImageRegistry registry);
+
+	private final ImageRegistry _imageRegistry;
 
 }
