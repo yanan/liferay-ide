@@ -21,7 +21,6 @@ import com.liferay.ide.core.util.FileUtil;
 import com.liferay.ide.core.util.WorkspaceConstants;
 import com.liferay.ide.gradle.core.parser.GradleDependencyUpdater;
 import com.liferay.ide.project.core.AbstractProjectBuilder;
-import com.liferay.ide.project.core.IProjectBuilder;
 
 import java.io.IOException;
 
@@ -50,7 +49,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Terry Jia
  */
-@Component(property = "type=gradle", service = {IWorkspaceProjectBuilder.class, IProjectBuilder.class})
+@Component(property = "type=gradle", service = IWorkspaceProjectBuilder.class)
 public class GradleProjectBuilder extends AbstractProjectBuilder implements ArtifactBuilder, IWorkspaceProjectBuilder {
 
 	public GradleProjectBuilder() {

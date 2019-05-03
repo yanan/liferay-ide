@@ -3,7 +3,6 @@
    <property name="type" value="gradle"/>
    <service>
       <provide interface="com.liferay.ide.core.IWorkspaceProjectBuilder"/>
-      <provide interface="com.liferay.ide.project.core.IProjectBuilder"/>
    </service>
    <implementation class="com.liferay.ide.gradle.core.GradleProjectBuilder"/>
 </scr:component>
