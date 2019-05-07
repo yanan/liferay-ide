@@ -47,6 +47,7 @@
         <swtbot-site>http://download.eclipse.org/technology/swtbot/releases/2.6.0/</swtbot-site>
         <sapphire-site>http://download.eclipse.org/sapphire/9.1.1/repository/</sapphire-site>
         <maven-deps-plugin-site>http://ianbrandt.github.io/m2e-maven-dependency-plugin/0.0.4/</maven-deps-plugin-site>
+        <emf-site>https://download.eclipse.org/modeling/emf/emf/builds/release/2.17</emf-site>
         <gmaven.runtime>1.8</gmaven.runtime>
         <blade-latest-download-url>https://repository.liferay.com/nexus/content/repositories/liferay-public-releases/com/liferay/blade/com.liferay.blade.cli/3.6.0/com.liferay.blade.cli-3.6.0.jar</blade-latest-download-url>
         <blade-latest-md5>b3c07042a5ed801ed3da8db537fc799f</blade-latest-md5>
@@ -134,6 +135,11 @@
             <id>maven-deps-plugin</id>
             <layout>p2</layout>
             <url>${maven-deps-plugin-site}</url>
+        </repository>
+         <repository>
+            <id>emf</id>
+            <layout>p2</layout>
+            <url>${emf-site}</url>
         </repository>
     </repositories>
 

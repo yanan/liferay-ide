@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="upgrade-planner" uid="upgradePlaner" id="com.liferay.ide.upgrade.planner.ui.upgradePlannerProduct" application="com.liferay.ide.upgrade.planner.ui.upgradePlannerApplication" useFeatures="true" includeLaunchers="true">
+<product name="upgrade-planner" uid="upgradePlaner" id="com.liferay.ide.upgrade.planner.ui.upgradePlannerProduct" application="com.liferay.ide.upgrade.planner.ui.upgradePlannerApplication" version="3.6.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

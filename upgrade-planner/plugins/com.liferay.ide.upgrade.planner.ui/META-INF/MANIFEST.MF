@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: com.liferay.ide.upgrade.planner.ui
 Bundle-SymbolicName: com.liferay.ide.upgrade.planner.ui;singleton:=true
 Bundle-Name: Ui
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 3.6.0.qualifier
 Require-Bundle: com.liferay.ide.core,
  com.liferay.ide.upgrade.plan.core,
  com.liferay.ide.upgrade.plan.ui,
@@ -13,5 +13,5 @@ Require-Bundle: com.liferay.ide.core,
  org.eclipse.ui
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Vendor: VOGELLA
+Bundle-Vendor: Liferay, Inc.
 Bundle-ActivationPolicy: lazy
