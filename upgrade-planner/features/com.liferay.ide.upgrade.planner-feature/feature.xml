@@ -34,7 +34,23 @@
 
 	<plugin
 		download-size="0"
+		id="org.objectweb.asm"
+		install-size="0"
+		unpack="false"
+		version="5.2.0.v20170126-0011"
+	/>
+
+	<plugin
+		download-size="0"
 		id="com.liferay.ide.core"
+		install-size="0"
+		unpack="false"
+		version="0.0.0"
+	/>
+
+	<plugin
+		download-size="0"
+		id="org.json"
 		install-size="0"
 		unpack="false"
 		version="0.0.0"
@@ -50,55 +66,7 @@
 
 	<plugin
 		download-size="0"
-		id="org.apache.commons.collections"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
 		id="org.apache.commons.lang"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.core.filesystem"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.core.net"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.core.resources"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.core.variables"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.debug.core"
 		install-size="0"
 		unpack="false"
 		version="0.0.0"
@@ -122,305 +90,8 @@
 
 	<plugin
 		download-size="0"
-		id="org.eclipse.jface.text"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.json"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
 		id="org.eclipse.jdt.debug"
 		install-size="0"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.modeling"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.ui"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.forms"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.ide"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.navigator"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.navigator.resources"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.workbench"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.workbench.texteditor"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.equinox.security"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.text"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.compare.core"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.help"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.java"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.modeling.xml"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.osgi"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.editors"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.views"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ltk.core.refactoring"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ltk.ui.refactoring"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ui.views.properties.tabbed"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.equinox.p2.core"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.core.filebuffers"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.wst.common.uriresolver"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.team.core"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.team.ui"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.compare"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ecf.filetransfer"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.ecf.provider.filetransfer"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.objectweb.asm"
-		install-size="0"
-		unpack="false"
-		version="5.2.0.v20170126-0011"
-	/>
-
-	<plugin
-		download-size="0"
-		fragment="true"
-		id="org.eclipse.sapphire.osgi.fragment"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.platform"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.sapphire.workspace"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.gef"
-		install-size="0"
-		unpack="false"
-		version="0.0.0"
-	/>
-
-	<plugin
-		download-size="0"
-		id="org.eclipse.draw2d"
-		install-size="0"
-		unpack="false"
 		version="0.0.0"
 	/>
 
@@ -435,6 +106,14 @@
 	<plugin
 		download-size="0"
 		id="com.liferay.ide.upgrade.plan.ui"
+		install-size="0"
+		unpack="false"
+		version="0.0.0"
+	/>
+
+	<plugin
+		download-size="0"
+		id="org.eclipse.wst.common.uriresolver"
 		install-size="0"
 		unpack="false"
 		version="0.0.0"

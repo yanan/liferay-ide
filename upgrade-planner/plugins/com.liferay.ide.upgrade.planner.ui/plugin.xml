@@ -3,11 +3,52 @@
 <plugin>
 
 	<extension
-		id="product"
+		point="org.eclipse.ui.perspectives"
+	>
+		<perspective
+			class="com.liferay.ide.upgrade.planner.ui.UpgradePlannerPerspective"
+			id="com.liferay.ide.upgrade.planner.perspective"
+			name="Perspective"
+		>
+		</perspective>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions"
+	>
+		<perspectiveExtension
+			targetID="*"
+		>
+			<view
+				id="com.liferay.ide.upgrade.plan.view"
+				minimized="false"
+				relationship="left"
+				relative="org.eclipse.ui.editorss"
+				standalone="true"
+			>
+			</view>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		id="upgradePlannerApplication"
+		point="org.eclipse.core.runtime.applications"
+	>
+		<application
+			cardinality="singleton-global"
+			thread="main"
+			visible="true"
+		>
+			<run
+				class="com.liferay.ide.upgrade.planner.ui.UpgradePlanner"
+			>
+			</run>
+		</application>
+	</extension>
+	<extension
+		id="upgradePlannerProduct"
 		point="org.eclipse.core.runtime.products"
 	>
 		<product
-			application="org.eclipse.e4.ui.workbench.swt.E4Application"
+			application="com.liferay.ide.upgrade.planner.ui.upgradePlannerApplication"
 			name="upgrade-planner"
 		>
 			<property

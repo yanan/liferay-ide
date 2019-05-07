@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="upgrade-planner" uid="upgradePlaner" id="com.liferay.ide.upgrade.planner.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" useFeatures="true" includeLaunchers="true">
+<product name="upgrade-planner" uid="upgradePlaner" id="com.liferay.ide.upgrade.planner.ui.upgradePlannerProduct" application="com.liferay.ide.upgrade.planner.ui.upgradePlannerApplication" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -28,17 +28,16 @@
    </plugins>
 
    <features>
-      <feature id="org.eclipse.e4.rcp"/>
-      <feature id="org.eclipse.emf.ecore"/>
-      <feature id="org.eclipse.emf.common"/>
-      <feature id="org.eclipse.equinox.p2.core.feature" version="1.6.0.v20181123-1405"/>
+      <feature id="org.eclipse.platform" version="4.10.0.v20181206-0815"/>
+      <feature id="org.eclipse.emf.common" version="2.15.0.v20181220-0846"/>
+      <feature id="org.eclipse.emf.ecore" version="2.17.0.v20190116-0940"/>
       <feature id="org.eclipse.ecf.core.feature" version="1.5.3.v20181012-2020"/>
+      <feature id="org.eclipse.ecf.filetransfer.feature" version="3.14.4.v20181013-2146"/>
       <feature id="org.eclipse.sapphire" version="9.1.1.201712191343"/>
       <feature id="org.eclipse.sapphire.java" version="9.1.1.201712191343"/>
       <feature id="org.eclipse.sapphire.modeling.xml" version="9.1.1.201712191343"/>
-      <feature id="org.eclipse.sapphire.platform" version="9.1.1.201712191343"/>
-      <feature id="org.eclipse.sapphire.ui" version="9.1.1.201712191343"/>
       <feature id="org.eclipse.sapphire.osgi" version="9.1.1.201712191343"/>
+      <feature id="org.eclipse.sapphire.ui" version="9.1.1.201712191343"/>
       <feature id="com.liferay.ide.upgrade.planner" version="3.6.0.qualifier"/>
    </features>
 
