@@ -262,7 +262,7 @@ public class NewLiferayComponentOpTests extends BaseTests
         NewLiferayModuleProjectOp op = NewLiferayModuleProjectOp.TYPE.instantiate();
 
         op.setProjectName( "testGradleStrutsActionComponent" );
-        op.setProjectTemplateName( "portlet" );
+        op.setProjectTemplateName( "portlet-provider" );
         op.setProjectProvider( "gradle-module" );
 
         Status modulePorjectStatus = NewLiferayModuleProjectOpMethods.execute( op, ProgressMonitorBridge.create( new NullProgressMonitor() ) );

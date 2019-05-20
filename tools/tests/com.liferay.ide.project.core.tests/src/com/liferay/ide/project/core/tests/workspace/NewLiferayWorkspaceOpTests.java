@@ -125,6 +125,8 @@ public class NewLiferayWorkspaceOpTests extends ProjectCoreBase
         prop.setProperty( WorkspaceConstants.WARS_DIR_PROPERTY, "wars,wars2" );
         PropertiesUtil.saveProperties( prop, propertiesFile );
 
+        waitForBuildAndValidation();
+
         NewLiferayModuleProjectOp moduleProjectOp = NewLiferayModuleProjectOp.TYPE.instantiate();
 
         moduleProjectOp.setProjectName( "testThemeWarDefault" );
