@@ -41,7 +41,7 @@ public class LiferayWorkspaceGradleSupport extends LiferayWorkspaceSupport {
 
 		wizardAction.openNewLiferayWorkspaceWizard();
 
-		wizardAction.newLiferayWorkspace.prepareGradle(getName());
+		wizardAction.newLiferayWorkspace.prepareGradle(getName(), "7.1");
 
 		wizardAction.finish();
 
