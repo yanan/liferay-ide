@@ -146,6 +146,44 @@ public abstract class Tomcat7xDeployBase extends ServerTestBase {
 		viewAction.project.closeAndDelete(project.getName());
 	}
 
+	public void redeploy() {
+		wizardAction.openNewLiferayModuleWizard();
+
+		wizardAction.newModule.prepareGradle(project.getName(), PANEL_APP, getVersion());
+
+		wizardAction.finish();
+
+		jobAction.waitForNoRunningProjectBuildingJobs();
+
+		viewAction.servers.openAddAndRemoveDialog(server.getStartedLabel());
+
+		dialogAction.addAndRemove.addModule(project.getName());
+
+		dialogAction.confirm(FINISH);
+
+		Assert.assertTrue(viewAction.servers.visibleModuleTry(server.getStartedLabel(), project.getName()));
+
+		jobAction.waitForConsoleContent(server.getServerName(), "STARTED " + project.getName() + "_", M1);
+
+		viewAction.console.clearConsole();
+
+		viewAction.servers.redeployModule(server.getStartedLabel(), project.getName());
+
+		jobAction.waitForConsoleContent(server.getServerName(), "STOPPED " + project.getName() + "_", M1);
+
+		jobAction.waitForConsoleContent(server.getServerName(), "STARTED " + project.getName() + "_", M1);
+
+		viewAction.console.clearConsole();
+
+		viewAction.servers.removeModule(server.getServerName(), project.getName());
+
+		dialogAction.confirm();
+
+		jobAction.waitForConsoleContent(server.getServerName(), "STOPPED " + project.getName() + "_", M1);
+
+		viewAction.project.closeAndDelete(project.getName());
+	}
+
 	@Rule
 	public ProjectSupport project = new ProjectSupport(bot);
 
