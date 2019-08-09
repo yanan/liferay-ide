@@ -146,7 +146,7 @@ public abstract class Tomcat7xDeployBase extends ServerTestBase {
 		viewAction.project.closeAndDelete(project.getName());
 	}
 
-	public void redeploy() {
+	public void redeployModule() {
 		wizardAction.openNewLiferayModuleWizard();
 
 		wizardAction.newModule.prepareGradle(project.getName(), PANEL_APP, getVersion());

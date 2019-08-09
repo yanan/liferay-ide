@@ -60,8 +60,8 @@ public class Tomcat70DeployTests extends Tomcat7xDeployBase {
 	}
 
 	@Test
-	public void redeploy() {
-		super.redeploy();
+	public void redeployModule() {
+		super.redeployModule();
 	}
 
 	@Override
