@@ -225,7 +225,8 @@ public class UpdateWorkspacePluginVersionCommand implements UpgradeCommand, Upgr
 						gradleDependencyUpdater.updateDependencyVersions(true, Collections.singletonList(artifact));
 					}
 					catch (IOException ioe) {
-						LiferayGradleUI.logError(ioe);
+						LiferayGradleUI.logError(
+							"Unable to update workspace plugin version, please check your settings.gradle", ioe);
 					}
 				}
 			);
