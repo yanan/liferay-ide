@@ -11,7 +11,7 @@
         <validVersion>
             <bitness>64</bitness>
             <maxVersion>11</maxVersion>
-            <minVersion>11</minVersion>
+            <minVersion></minVersion>
             <requireJDK>1</requireJDK>
             <vendor></vendor>
         </validVersion>
