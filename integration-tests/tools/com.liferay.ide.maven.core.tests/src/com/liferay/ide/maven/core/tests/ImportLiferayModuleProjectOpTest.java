@@ -17,8 +17,8 @@ package com.liferay.ide.maven.core.tests;
 import com.liferay.ide.core.util.CoreUtil;
 import com.liferay.ide.core.util.ZipUtil;
 import com.liferay.ide.maven.core.LiferayMavenCore;
+import com.liferay.ide.maven.core.tests.util.MavenTestUtil;
 import com.liferay.ide.project.core.modules.ImportLiferayModuleProjectOp;
-import com.liferay.ide.project.core.util.ProjectUtil;
 
 import java.io.File;
 
@@ -63,7 +63,7 @@ public class ImportLiferayModuleProjectOpTest {
 
 		MavenTestUtil.waitForJobsToComplete();
 
-		IProject project = ProjectUtil.getProject(projectName);
+		IProject project = CoreUtil.getProject(projectName);
 
 		Assert.assertTrue(project.exists());
 
@@ -96,8 +96,8 @@ public class ImportLiferayModuleProjectOpTest {
 		Assert.assertTrue(importOp.validation().ok());
 		Assert.assertTrue(importOp.execute(ProgressMonitorBridge.create(new NullProgressMonitor())).ok());
 
-		IProject project = ProjectUtil.getProject(projectName);
-
+		IProject project = CoreUtil.getProject(projectName);
+		
 		Assert.assertTrue(project.exists());
 
 		importOp = ImportLiferayModuleProjectOp.TYPE.instantiate();
