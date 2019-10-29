@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Liferay IDE Functional Release Tests
+Bundle-SymbolicName: com.liferay.ide.functional.release.tests
+Bundle-Version: 3.7.1.qualifier
+Bundle-Vendor: Liferay
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.liferay.ide.functional.liferay,
+ com.liferay.ide.functional.swtbot,
+ org.junit
