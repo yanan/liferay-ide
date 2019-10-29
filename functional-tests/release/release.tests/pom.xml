@@ -1,0 +1,76 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.liferay.ide.release</groupId>
+		<artifactId>release</artifactId>
+		<version>3.7.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.liferay.ide.functional.release.tests</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+	<name>Liferay IDE Functional Release Tests</name>
+	<properties>
+		<eclipse.dir>../../../tests-resources/eclipse/</eclipse.dir>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>prepare</id>
+						<phase>test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<testRuntime>p2Installed</testRuntime>
+					<work>${eclipse.dir}/temp/eclipse</work>
+					<profileName>epp.package.jee</profileName>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>false</useUIThread>
+					<includes>
+						<include>**/*Test*.class</include>
+					</includes>
+					<systemProperties>
+						<eclipse.dir>${eclipse.dir}</eclipse.dir>
+					</systemProperties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
