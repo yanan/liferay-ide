@@ -20,4 +20,16 @@
 	<modules>
 		<module>release.tests</module>
 	</modules>
+
+	<properties>
+		<liferay-ide-swtbot-testing-site>file:/${basedir}/../../com.liferay.ide.functional.testing-repository/target/repository/</liferay-ide-swtbot-testing-site>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>liferay-ide-swtbot-testing-site</id>
+			<layout>p2</layout>
+			<url>${liferay-ide-swtbot-testing-site}</url>
+		</repository>
+	</repositories>
 </project>
