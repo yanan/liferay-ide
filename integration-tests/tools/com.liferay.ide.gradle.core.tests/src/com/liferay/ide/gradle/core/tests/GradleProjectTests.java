@@ -14,7 +14,7 @@
 
 package com.liferay.ide.gradle.core.tests;
 
-import com.liferay.blade.gradle.tooling.DefaultModel;
+import com.liferay.blade.gradle.tooling.ProjectInfo;
 import com.liferay.ide.core.Artifact;
 import com.liferay.ide.core.IBundleProject;
 import com.liferay.ide.core.IProjectBuilder;
@@ -154,7 +154,7 @@ public class GradleProjectTests extends ProjectBase {
 
 		assertProjectExists(ips);
 
-		DefaultModel customModel = LiferayGradleCore.getToolingModel(DefaultModel.class, gradleProject.getProject());
+		ProjectInfo customModel = LiferayGradleCore.getToolingModel(ProjectInfo.class, gradleProject.getProject());
 
 		Set<String> pluginClassNames = customModel.getPluginClassNames();
 
