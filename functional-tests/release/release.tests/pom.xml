@@ -15,7 +15,8 @@
 	<packaging>eclipse-test-plugin</packaging>
 	<name>Liferay IDE Functional Release Tests</name>
 	<properties>
-		<eclipse.dir>../../../tests-resources/eclipse/temp/eclipse/</eclipse.dir>
+		<eclipse.dir>/home/liferay/QA/latest/ide-master/StudioMaster/liferay-developer-studio/</eclipse.dir>
+		<eclipse.workspace>/home/liferay/QA/latest/ide-master/StudioMaster/liferay-developer-studio//studio-workspace</eclipse.workspace>
 		<liferay.bundles.dir>../../../tests-resources/</liferay.bundles.dir>
 	</properties>
 	<build>
@@ -40,6 +41,24 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<testRuntime>p2Installed</testRuntime>
+					<product>com.liferay.ide.studio.ui.product</product>
+					<osgiDataDirectory>${eclipse.workspace}</osgiDataDirectory>
+					<work>${eclipse.dir}</work>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>false</useUIThread>
+					<includes>
+						<include>**/*Test*.class</include>
+					</includes>
+					<systemProperties>
+						<liferay.bundles.dir>${liferay.bundles.dir}</liferay.bundles.dir>
+						<eclipse.dir>${eclipse.dir}</eclipse.dir>
+					</systemProperties>
+				</configuration>
+				
+				<!--configuration for Eclipse with liferay updatesite installed
+				<configuration>
+					<testRuntime>p2Installed</testRuntime>
+					<osgiDataDirectory>${eclipse.workspace}</osgiDataDirectory>
 					<work>${eclipse.dir}</work>
 					<profileName>epp.package.jee</profileName>
 					<useUIHarness>true</useUIHarness>
@@ -52,6 +71,7 @@
 						<eclipse.dir>${eclipse.dir}</eclipse.dir>
 					</systemProperties>
 				</configuration>
+				-->
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
