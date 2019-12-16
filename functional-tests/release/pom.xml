@@ -32,4 +32,5 @@
 			<url>${liferay-ide-swtbot-testing-site}</url>
 		</repository>
 	</repositories>
+
 </project>
