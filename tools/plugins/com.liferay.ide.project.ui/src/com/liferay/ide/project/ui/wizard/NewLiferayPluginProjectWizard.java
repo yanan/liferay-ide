@@ -25,7 +25,7 @@ import com.liferay.ide.project.ui.IvyUtil;
 import com.liferay.ide.project.ui.ProjectUI;
 import com.liferay.ide.project.ui.modules.BaseProjectWizard;
 import com.liferay.ide.sdk.core.ISDKConstants;
-import com.liferay.ide.ui.LiferayPerspectiveFactory;
+import com.liferay.ide.ui.LiferayPluginPerspectiveFactory;
 import com.liferay.ide.ui.util.UIUtil;
 
 import java.util.ArrayList;
@@ -117,7 +117,7 @@ public class NewLiferayPluginProjectWizard extends BaseProjectWizard<NewLiferayP
 			@Override
 			public String getAttribute(String aName) {
 				if (aName.equals("finalPerspective")) {
-					return LiferayPerspectiveFactory.ID;
+					return LiferayPluginPerspectiveFactory.ID;
 				}
 
 				return super.getAttribute(aName);

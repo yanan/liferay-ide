@@ -24,7 +24,7 @@ import org.eclipse.ui.progress.IProgressConstants;
  * @author Lovett Li
  */
 @SuppressWarnings("deprecation")
-public class LiferayPerspectiveFactory extends AbstractPerspectiveFactory {
+public class LiferayPluginPerspectiveFactory extends AbstractPerspectiveFactory {
 
 	public static final String ID = "com.liferay.ide.eclipse.ui.perspective.liferay";
 
@@ -46,7 +46,7 @@ public class LiferayPerspectiveFactory extends AbstractPerspectiveFactory {
 
 		topLeft.addView(ID_PACKAGE_EXPLORER_VIEW);
 
-		// topLeft.addView(ID_J2EE_HIERARCHY_VIEW);
+//		topLeft.addView(ID_J2EE_HIERARCHY_VIEW);
 
 		topLeft.addPlaceholder(ID_J2EE_HIERARCHY_VIEW);
 		topLeft.addPlaceholder(IPageLayout.ID_RES_NAV);
@@ -93,4 +93,21 @@ public class LiferayPerspectiveFactory extends AbstractPerspectiveFactory {
 		bottom.addPlaceholder(ID_SEARCH_VIEW);
 	}
 
+	protected void addShortcuts(IPageLayout layout) {
+		layout.addNewWizardShortcut(ID_NEW_PLUGIN_PROJECT_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_PLUGIN_PROJECT_WIZARD_EXISTING_SOURCE);
+		
+		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.file");
+		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.folder");
+		layout.addNewWizardShortcut("org.eclipse.ui.editors.wizards.UntitledTextFileWizard");
+		layout.addNewWizardShortcut("org.eclipse.jdt.ui.wizards.NewPackageCreationWizard");
+		layout.addNewWizardShortcut("org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard");
+		layout.addNewWizardShortcut("org.eclipse.jdt.ui.wizards.NewClassCreationWizard");
+		layout.addNewWizardShortcut(ID_NEW_PORTLET_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_JSF_PORTLET_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_VAADIN_PORTLET_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_HOOK_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_SERVICE_BUILDER_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_LAYOUT_TEMPLATE_WIZARD);
+	}
 }

@@ -139,65 +139,105 @@ public class NewPluginProjectDropDownAction extends Action implements IMenuCreat
 	}
 
 	public Menu getMenu(Control parent) {
-		if (fMenu == null) {
+		
+		String perspective_id = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getPerspective().getId();
+		
+//		if (fMenu == null) {
 			fMenu = new Menu(parent);
+			
+			switch (perspective_id) {
+			
+				case "com.liferay.ide.eclipse.ui.perspective.liferayworkspace" :
+					
+					// add non project items
 
-			NewWizardAction[] actions = getNewProjectActions();
+					NewWizardAction[] nonProjectActions = getActionFromDescriptors(getNonProjectTypeAttribute());
 
-			// only do the first project action (not the 5 separate ones)
+					for (NewWizardAction action : nonProjectActions) {
+						action.setShell(fWizardShell);
 
-			for (NewWizardAction action : actions) {
-				action.setShell(fWizardShell);
+						ActionContributionItem nonProjectItem = new ActionContributionItem(action);
 
-				ActionContributionItem projectItem = new ActionContributionItem(action);
+						nonProjectItem.fill(fMenu, -1);
+					}
+					
+					new Separator().fill(fMenu, -1);
+					
+					NewWizardAction[] actions = getNewProjectActions();
 
-				projectItem.fill(fMenu, -1);
+					// only do the first project action (not the 5 separate ones)
+
+					for (NewWizardAction action : actions) {
+						action.setShell(fWizardShell);
+
+						ActionContributionItem projectItem = new ActionContributionItem(action);
+
+						projectItem.fill(fMenu, -1);
+					}
+
+					break;
+					
+				case "com.liferay.ide.eclipse.ui.perspective.liferay" :
+					
+					NewWizardAction[] pluginProjectActions = getActionFromDescriptors(getPluginProjectTypeAttribute());
+	
+					for (NewWizardAction action : pluginProjectActions) {
+						
+						action.setShell(fWizardShell);
+
+						ActionContributionItem pluginProjectitem = new ActionContributionItem(action);
+
+						pluginProjectitem.fill(fMenu, -1);
+					}
+					
+					NewWizardAction importAction = new ImportLiferayProjectsWizardAction();
+
+					importAction.setShell(fWizardShell);
+
+					ActionContributionItem item = new ActionContributionItem(importAction);
+
+					item.fill(fMenu, -1);
+					
+					new Separator().fill(fMenu, -1);
+
+					NewWizardAction[] pluginNonProjectActions = getActionFromDescriptors(getPluginNonProjectTypeAttribute());
+
+					for (NewWizardAction action : pluginNonProjectActions) {
+						
+						action.setShell(fWizardShell);
+
+						ActionContributionItem pluginNonProjectItem = new ActionContributionItem(action);
+
+						pluginNonProjectItem.fill(fMenu, -1);
+					}
+					
+					new Separator().fill(fMenu, -1);
+					
+					NewWizardAction[] noProjectExtraActions = getActionFromDescriptors(getNonProjectExtraTypeAttribute());
+	
+						for (NewWizardAction action : noProjectExtraActions) {
+							action.setShell(fWizardShell);
+	
+							ActionContributionItem noProjectExtraitem = new ActionContributionItem(action);
+	
+							noProjectExtraitem.fill(fMenu, -1);
+						}
+
+					//None Project Right Now!
+					NewWizardAction[] projectExtraActions = getExtraProjectActions();
+
+					for (NewWizardAction extraAction : projectExtraActions) {
+						extraAction.setShell(fWizardShell);
+
+						ActionContributionItem extraItem = new ActionContributionItem(extraAction);
+
+						extraItem.fill(fMenu, -1);
+					}
+					
+					break;
 			}
-
-			NewWizardAction importAction = new ImportLiferayProjectsWizardAction();
-
-			importAction.setShell(fWizardShell);
-
-			ActionContributionItem item = new ActionContributionItem(importAction);
-
-			item.fill(fMenu, -1);
-
-			NewWizardAction[] projectExtraActions = getExtraProjectActions();
-
-			for (NewWizardAction extraAction : projectExtraActions) {
-				extraAction.setShell(fWizardShell);
-
-				ActionContributionItem extraItem = new ActionContributionItem(extraAction);
-
-				extraItem.fill(fMenu, -1);
-			}
-
-			new Separator().fill(fMenu, -1);
-
-			// add non project items
-
-			NewWizardAction[] nonProjectActions = getActionFromDescriptors(getNonProjectTypeAttribute());
-
-			for (NewWizardAction action : nonProjectActions) {
-				action.setShell(fWizardShell);
-
-				ActionContributionItem noProjectitem = new ActionContributionItem(action);
-
-				noProjectitem.fill(fMenu, -1);
-			}
-
-			new Separator().fill(fMenu, -1);
-
-			NewWizardAction[] noProjectExtraActions = getActionFromDescriptors(getNonProjectExtraTypeAttribute());
-
-			for (NewWizardAction action : noProjectExtraActions) {
-				action.setShell(fWizardShell);
-
-				ActionContributionItem noProjectExtraitem = new ActionContributionItem(action);
-
-				noProjectExtraitem.fill(fMenu, -1);
-			}
-
+			
 			new Separator().fill(fMenu, -1);
 
 			Action[] sdkActions = getServerActions(parent.getShell());
@@ -207,7 +247,8 @@ public class NewPluginProjectDropDownAction extends Action implements IMenuCreat
 
 				sdkItem.fill(fMenu, -1);
 			}
-		}
+			
+//		}
 
 		return fMenu;
 	}
@@ -234,6 +275,10 @@ public class NewPluginProjectDropDownAction extends Action implements IMenuCreat
 	protected static String getTypeAttribute() {
 		return "liferay_project";
 	}
+	
+	protected static String getPluginProjectTypeAttribute() {
+		return "liferay_plugin_project";
+	}
 
 	protected String getNonProjectExtraTypeAttribute() {
 		return "liferay_extra_artifact";
@@ -241,6 +286,10 @@ public class NewPluginProjectDropDownAction extends Action implements IMenuCreat
 
 	protected String getNonProjectTypeAttribute() {
 		return "liferay_artifact";
+	}
+	
+	protected String getPluginNonProjectTypeAttribute() {
+		return "liferay_plugin_artifact";
 	}
 
 	protected Action[] getServerActions(Shell shell) {

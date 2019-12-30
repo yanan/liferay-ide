@@ -91,4 +91,13 @@ public class LiferayWorkspacePerspectiveFactory extends AbstractPerspectiveFacto
 		ProjectExplorerLayoutUtil.setNested(true);
 	}
 
+	protected void addShortcuts(IPageLayout layout) {
+		layout.addNewWizardShortcut(ID_NEW_COMPONENT_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_MODULE_FRAGMENT_FILES_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_MODULE_PROJECT_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_JSF_MODULE_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_MODULE_FRAGMENT_PROJECT_WIZARD);
+		layout.addNewWizardShortcut(ID_NEW_WORKSPACE_PROJECT_WIZARD);
+	}
+
 }
