@@ -33,26 +33,30 @@ public class ModuleExtProjectNamePossibleValuesService extends PossibleValuesSer
 
 	@Override
 	protected void compute(Set<String> values) {
-		IPath extDirLocation = LiferayWorkspaceUtil.getExtDirLocation(LiferayWorkspaceUtil.getWorkspaceProject());
+		IProject workspaceProject = LiferayWorkspaceUtil.getWorkspaceProject();
 
-		values.addAll(
-			Stream.of(
-				CoreUtil.getAllProjects()
-			).filter(
-				project -> {
-					IPath location = project.getLocation();
+		if (workspaceProject != null) {
+			IPath extDirLocation = LiferayWorkspaceUtil.getExtDirLocation(workspaceProject);
 
-					if (extDirLocation.isPrefixOf(location) && !location.equals(extDirLocation)) {
-						return true;
+			values.addAll(
+				Stream.of(
+					CoreUtil.getAllProjects()
+				).filter(
+					project -> {
+						IPath location = project.getLocation();
+
+						if (extDirLocation.isPrefixOf(location) && !location.equals(extDirLocation)) {
+							return true;
+						}
+
+						return false;
 					}
-
-					return false;
-				}
-			).map(
-				IProject::getName
-			).collect(
-				Collectors.toSet()
-			));
+				).map(
+					IProject::getName
+				).collect(
+					Collectors.toSet()
+				));
+		}
 	}
 
 }
