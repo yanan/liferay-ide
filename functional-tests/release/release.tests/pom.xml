@@ -13,7 +13,9 @@
 
 	<artifactId>com.liferay.ide.functional.release.tests</artifactId>
 	<packaging>eclipse-test-plugin</packaging>
+	
 	<name>Liferay IDE Functional Release Tests</name>
+	<version>3.7.1-SNAPSHOT</version>
 	<properties>
 		<!--eclipse.dir>/home/liferay/QA/latest/ide-master/StudioMaster/liferay-developer-studio/</eclipse.dir>
 		<eclipse.workspace>/home/liferay/QA/latest/ide-master/StudioMaster/liferay-developer-studio/studio-workspace</eclipse.workspace-->
@@ -22,70 +24,5 @@
 		<liferay.bundles.dir>../../../tests-resources/</liferay.bundles.dir>
 	</properties>
 
-	<profiles>
-
-		<profile>
-			<id>run-on-eclipse</id>
-			<!--modules>
-				<module>release.tests</module>
-			</modules-->
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>tycho-surefire-plugin</artifactId>
-						<version>${tycho-version}</version>
-						<configuration>
-							<testRuntime>p2Installed</testRuntime>
-							<osgiDataDirectory>${eclipse.workspace}</osgiDataDirectory>
-							<work>${eclipse.dir}</work>
-							<profileName>epp.package.jee</profileName>
-							<useUIHarness>true</useUIHarness>
-							<useUIThread>false</useUIThread>
-							<includes>
-								<include>**/*Test*.class</include>
-							</includes>
-							<systemProperties>
-								<liferay.bundles.dir>${liferay.bundles.dir}</liferay.bundles.dir>
-								<eclipse.dir>${eclipse.dir}</eclipse.dir>
-							</systemProperties>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>run-on-studio</id>
-			<!--modules>
-				<module>release.tests</module>
-			</modules-->
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.eclipse.tycho</groupId>
-							<artifactId>tycho-surefire-plugin</artifactId>
-							<version>${tycho-version}</version>
-							<configuration>
-								<testRuntime>p2Installed</testRuntime>
-								<product>com.liferay.ide.studio.ui.product</product>
-								<osgiDataDirectory>${eclipse.workspace}</osgiDataDirectory>
-								<work>${eclipse.dir}</work>
-								<useUIHarness>true</useUIHarness>
-								<useUIThread>false</useUIThread>
-								<includes>
-									<include>**/*Test*.class</include>
-								</includes>
-								<systemProperties>
-									<liferay.bundles.dir>${liferay.bundles.dir}</liferay.bundles.dir>
-									<eclipse.dir>${eclipse.dir}</eclipse.dir>
-								</systemProperties>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-	</profiles>
+	
 </project>

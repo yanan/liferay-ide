@@ -24,7 +24,9 @@
 	</modules>
 
 	<properties>
-	<eclipse-site>https://download.eclipse.org/releases/2018-12/201812191000/</eclipse-site>
+		<!--eclipse-site>https://download.eclipse.org/releases/2018-12/201812191000/</eclipse-site-->
+		<eclipse-site>https://download.eclipse.org/releases/2018-12/201812191000/</eclipse-site>
+		<liferay-ide-site>http://files.liferay.org.es/staged/public-files/liferay-ide/unstable/build/com.liferay.ide-repository/target/repository/</liferay-ide-site>
 		<tycho-version>1.4.0</tycho-version>
 		<liferay-ide-swtbot-testing-site>file:/${basedir}/../../com.liferay.ide.functional.testing-repository/target/repository/</liferay-ide-swtbot-testing-site>
 	</properties>
@@ -39,6 +41,11 @@
 			<id>eclipse</id>
 			<layout>p2</layout>
 			<url>${eclipse-site}</url>
+		</repository>
+		<repository>
+			<id>liferay-ide-site</id>
+			<layout>p2</layout>
+			<url>${liferay-ide-site}</url>
 		</repository>
 	</repositories>
 
@@ -114,11 +121,135 @@
 
 		<profile>
 			<id>run-on-eclipse</id>
-			<!--modules>
+			<modules>
 				<module>release.tests</module>
-			</modules-->
+			</modules>
 			<build>
-				<plugins>
+
+
+
+
+<pluginManagement>
+					<plugins>
+						<!--plugin>
+							<groupId>org.eclipse.tycho</groupId>
+							<artifactId>target-platform-configuration</artifactId>
+							<version>${tycho-version}</version>
+							<configuration>
+								<dependency-resolution>
+									<extraRequirements>
+										<requirement>
+											<type>eclipse-feature</type>
+											<id>com.liferay.ide.eclipse.tools</id>
+											<versionRange>0.0.0</versionRange>
+										</requirement>
+										<requirement>
+											<type>eclipse-feature</type>
+											<id>com.liferay.ide.enterprise</id>
+											<versionRange>0.0.0</versionRange>
+										</requirement>
+										<requirement>
+											<type>eclipse-feature</type>
+											<id>com.liferay.ide.maven</id>
+											<versionRange>0.0.0</versionRange>
+										</requirement>
+									</extraRequirements>
+								</dependency-resolution>
+								<resolver>p2</resolver>
+								<ignoreTychoRepositories>true</ignoreTychoRepositories>
+								<allowConflictingDependencies>true</allowConflictingDependencies>
+								<environments>
+									<environment>
+										<os>linux</os>
+										<ws>gtk</ws>
+										<arch>x86_64</arch>
+									</environment>
+								</environments>
+							</configuration>
+						</plugin-->
+
+
+
+
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>prepare</id>
+						<phase>test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-versions-plugin</artifactId>
+					<version>${tycho-version}</version>
+				</plugin>
+
+
+
+			
+			
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>prepare</id>
+						<phase>test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 					<plugin>
 						<groupId>org.eclipse.tycho</groupId>
 						<artifactId>tycho-surefire-plugin</artifactId>
@@ -140,6 +271,10 @@
 						</configuration>
 					</plugin>
 				</plugins>
+				
+</pluginManagement>
+
+
 			</build>
 		</profile>
 
