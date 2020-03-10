@@ -203,18 +203,18 @@ public class BladeCLI {
 		for (String name : executeResult) {
 			name = name.trim();
 
-			if (name.indexOf(" ") != -1) {
+			//if (name.indexOf(" ") != -1) {
 
 				// for latest blade which print template descriptor
 
-				templateNames.add(name.substring(0, name.indexOf(" ")));
-			}
-			else {
+				//templateNames.add(name.substring(0, name.indexOf(" ")));
+			//}
+			//else {
 
 				// for legacy blade
 
 				templateNames.add(name);
-			}
+			//}
 		}
 
 		return templateNames.toArray(new String[0]);
