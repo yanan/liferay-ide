@@ -192,4 +192,31 @@ public class BladeCLITests
             projectTemplates[projectTemplates.length - 1].startsWith( "war-mvc-portlet" ) );
     }
 
+    @Test
+    public void bladeCLIProjectTemplates2() throws Exception
+    {
+        String[] projectTemplates = BladeCLI.getProjectTemplates();
+
+        assertNotNull( projectTemplates );
+
+        assertTrue( projectTemplates[0], projectTemplates[0].startsWith("activator"));
+
+        assertTrue(
+            projectTemplates[projectTemplates.length - 2],
+            projectTemplates[projectTemplates.length - 2].startsWith( "war-mvc-portlet" ) );
+    }
+    
+    @Test
+    public void bladeCLIProjectTemplates3() throws Exception
+    {
+        String[] projectTemplates = BladeCLI.getProjectTemplates();
+
+        assertNotNull( projectTemplates );
+
+        assertTrue( projectTemplates[0], projectTemplates[0].startsWith("activator"));
+
+        assertTrue(
+            projectTemplates[projectTemplates.length - 3],
+            projectTemplates[projectTemplates.length - 3].startsWith( "war-mvc-portlet" ) );
+    }
 }
