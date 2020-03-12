@@ -57,7 +57,7 @@ public class ImportLiferayModuleProjectOpTest {
 
 		importOp.setLocation(projectLocation);
 
-		Assert.assertEquals("gradle", importOp.getBuildType().text(false));
+		Assert.assertEquals("1111gradle1111", importOp.getBuildType().text(false));
 		Assert.assertTrue(importOp.validation().ok());
 		Assert.assertTrue(importOp.execute(ProgressMonitorBridge.create(new NullProgressMonitor())).ok());
 
