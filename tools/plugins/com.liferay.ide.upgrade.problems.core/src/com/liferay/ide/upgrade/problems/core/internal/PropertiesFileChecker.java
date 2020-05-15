@@ -184,15 +184,15 @@ public class PropertiesFileChecker {
 			LineReader lr = new LineReader(inputReader);
 
 			char[] convtBuf = new char[1024];
-			int[] limit;
 			int keyLen;
 			int valueStart;
 			char c;
 			boolean hasSep;
 			boolean precedingBackslash;
 			int lineNumber = 0;
+			int[] limit = lr.readLine();
 
-			while ((limit = lr.readLine())[0] >= 0) {
+			while (limit[0] >= 0) {
 				lineNumber++;
 				lineNumber += limit[2];
 				c = 0;

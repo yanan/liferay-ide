@@ -14,6 +14,8 @@
 
 package com.liferay.ide.upgrade.problems.core.internal.liferay70;
 
+import com.google.common.base.Objects;
+
 import com.liferay.ide.upgrade.plan.core.UpgradeProblem;
 import com.liferay.ide.upgrade.problems.core.AutoFileMigrateException;
 import com.liferay.ide.upgrade.problems.core.AutoFileMigrator;
@@ -118,7 +120,7 @@ public class DeprecatedLayoutTemplateTags extends XMLFileMigrator implements Aut
 
 	@Override
 	protected List<FileSearchResult> searchFile(File file, XMLFile xmlFileChecker) {
-		if (!"liferay-layout-templates.xml".equals(file.getName())) {
+		if (!Objects.equal("liferay-layout-templates.xml", file.getName())) {
 			return Collections.emptyList();
 		}
 

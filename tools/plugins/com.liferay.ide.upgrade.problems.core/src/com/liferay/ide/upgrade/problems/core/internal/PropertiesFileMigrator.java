@@ -62,13 +62,13 @@ public abstract class PropertiesFileMigrator implements FileMigrator {
 			if (ListUtil.isNotEmpty(results)) {
 				String fileName = "BREAKING_CHANGES.markdown";
 
-				if ("7.0".equals(version)) {
+				if (version.equals("7.0")) {
 					fileName = "liferay70/" + fileName;
 				}
-				else if ("7.1".equals(version)) {
+				else if (version.equals("7.1")) {
 					fileName = "liferay71/" + fileName;
 				}
-				else if ("7.2".equals(version)) {
+				else if (version.equals("7.2")) {
 					fileName = "liferay72/" + fileName;
 				}
 

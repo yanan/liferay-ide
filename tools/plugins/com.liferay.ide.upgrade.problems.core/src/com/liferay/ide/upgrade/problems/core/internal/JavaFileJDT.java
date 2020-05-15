@@ -370,7 +370,7 @@ public class JavaFileJDT extends WorkspaceFile implements JavaFile {
 					}
 
 					if (((methodName.equals(methodNameValue)) ||
-						("*".equals(methodName))) &&
+						(methodName.equals("*"))) &&
 
 						// if typeHint is not null it must match the type hint and
 						// ignore the expression
@@ -388,8 +388,9 @@ public class JavaFileJDT extends WorkspaceFile implements JavaFile {
 						boolean argumentsMatch = false;
 
 						if (methodParamTypes != null) {
-							Expression[] argExpressions = ((List<Expression>)node.arguments()).toArray(
-								new Expression[0]);
+							List<Expression> nodeArguments = (List<Expression>)node.arguments();
+
+							Expression[] argExpressions = nodeArguments.toArray(new Expression[0]);
 
 							if (argExpressions.length == methodParamTypes.length) {
 
@@ -418,34 +419,31 @@ public class JavaFileJDT extends WorkspaceFile implements JavaFile {
 
 											continue;
 										}
-										else {
 
-											// type unmatched
+										// type unmatched
 
-											possibleMatch = false;
-											typeMatched = false;
-
-											break;
-										}
-									}
-									else {
 										possibleMatch = false;
+										typeMatched = false;
 
-										// there are two cases :
-										// typeUnresolved : means that all resolved
-										// type is matched and there is unsolved
-										// type , need to set fullMatch false
-										// typeUnmatched : means that some resolved
-										// type is unmatched , no need to add
-										// SearchResult
-
-										// do not add searchResults now, just record
-										// the state and continue
-										// because there maybe unmatched type later
-										// which will break this case
-
-										typeUnresolved = true;
+										break;
 									}
+
+									possibleMatch = false;
+
+									// there are two cases :
+									// typeUnresolved : means that all resolved
+									// type is matched and there is unsolved
+									// type , need to set fullMatch false
+									// typeUnmatched : means that some resolved
+									// type is unmatched , no need to add
+									// SearchResult
+
+									// do not add searchResults now, just record
+									// the state and continue
+									// because there maybe unmatched type later
+									// which will break this case
+
+									typeUnresolved = true;
 								}
 
 								if (typeMatched && typeUnresolved) {

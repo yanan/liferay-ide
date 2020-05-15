@@ -14,6 +14,8 @@
 
 package com.liferay.ide.upgrade.problems.core.internal.liferay70;
 
+import com.google.common.base.Objects;
+
 import com.liferay.ide.upgrade.problems.core.FileMigrator;
 import com.liferay.ide.upgrade.problems.core.FileSearchResult;
 import com.liferay.ide.upgrade.problems.core.XMLFile;
@@ -46,7 +48,7 @@ public class MVCPortletInitParamsChangeXML extends XMLFileMigrator {
 
 		// check if it is portlet.xml file
 
-		if (!"portlet.xml".equals(file.getName())) {
+		if (!Objects.equal("portlet.xml", file.getName())) {
 			return Collections.emptyList();
 		}
 

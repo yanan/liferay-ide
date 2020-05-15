@@ -14,6 +14,8 @@
 
 package com.liferay.ide.upgrade.problems.core.internal.liferay71;
 
+import com.google.common.base.Objects;
+
 import com.liferay.ide.upgrade.plan.core.UpgradeProblem;
 import com.liferay.ide.upgrade.problems.core.AutoFileMigrateException;
 import com.liferay.ide.upgrade.problems.core.AutoFileMigrator;
@@ -102,7 +104,7 @@ public class SpringExtenderArtifactIdChangedForMavenProject extends XMLFileMigra
 				for (int j = 0; j < childNodes.getLength(); j++) {
 					Node childNode = childNodes.item(j);
 
-					if ("version".equals(childNode.getNodeName())) {
+					if (Objects.equal("version", childNode.getNodeName())) {
 						NodeList versionNodeChilds = childNode.getChildNodes();
 
 						Node versionNode = versionNodeChilds.item(0);

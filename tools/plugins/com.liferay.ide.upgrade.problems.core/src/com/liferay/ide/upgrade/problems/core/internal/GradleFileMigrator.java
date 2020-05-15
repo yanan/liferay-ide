@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 
@@ -69,10 +70,10 @@ public abstract class GradleFileMigrator implements FileMigrator {
 			if (results != null) {
 				String fileName = "BREAKING_CHANGES.markdown";
 
-				if ("7.0".equals(version)) {
+				if (version.equals("7.0")) {
 					fileName = "liferay70/" + fileName;
 				}
-				else if ("7.1".equals(version)) {
+				else if (version.equals("7.1")) {
 					fileName = "liferay71/" + fileName;
 				}
 
@@ -104,12 +105,11 @@ public abstract class GradleFileMigrator implements FileMigrator {
 		final AtomicReference<String> gradleFileContentString = new AtomicReference<>();
 
 		try {
-			Files.readAllLines(
-				file.toPath()
-			).stream(
-			).forEach(
-				gradleFileContents::add
-			);
+			List<String> allLines = Files.readAllLines(file.toPath());
+
+			Stream<String> linesStream = allLines.stream();
+
+			linesStream.forEach(gradleFileContents::add);
 
 			gradleFileContentString.set(FileUtils.readFileToString(file, "UTF-8"));
 		}
@@ -118,8 +118,9 @@ public abstract class GradleFileMigrator implements FileMigrator {
 
 		List<GradleDependency> dependencies = gradleBuildScript.getDependencies();
 
-		return dependencies.stream(
-		).filter(
+		Stream<GradleDependency> dependenciesStream = dependencies.stream();
+
+		return dependenciesStream.filter(
 			dep -> artifactId.equals(dep.getName())
 		).map(
 			dep -> {
@@ -155,8 +156,9 @@ public abstract class GradleFileMigrator implements FileMigrator {
 	public List<GradleDependency> findDependenciesByName(GradleBuildScript gradleBuildScript, String name) {
 		List<GradleDependency> gradleDependencies = gradleBuildScript.getDependencies();
 
-		return gradleDependencies.stream(
-		).filter(
+		Stream<GradleDependency> dependenciesStream = gradleDependencies.stream();
+
+		return dependenciesStream.filter(
 			dep -> Objects.equals(name, dep.getName())
 		).collect(
 			Collectors.toList()

@@ -20,7 +20,6 @@ import com.liferay.ide.upgrade.problems.core.AutoFileMigrateException;
 import com.liferay.ide.upgrade.problems.core.AutoFileMigrator;
 import com.liferay.ide.upgrade.problems.core.FileSearchResult;
 import com.liferay.ide.upgrade.problems.core.internal.PropertiesFileChecker;
-import com.liferay.ide.upgrade.problems.core.internal.PropertiesFileChecker.KeyInfo;
 import com.liferay.ide.upgrade.problems.core.internal.PropertiesFileMigrator;
 
 import java.io.ByteArrayInputStream;
@@ -31,6 +30,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.io.FileUtils;
 
@@ -49,13 +49,13 @@ public abstract class BaseLiferayVersionsProperties extends PropertiesFileMigrat
 	public List<UpgradeProblem> analyze(File file) {
 		List<UpgradeProblem> problems = new ArrayList<>();
 
-		if ("liferay-plugin-package.properties".equals(file.getName())) {
+		if (Objects.equals("liferay-plugin-package.properties", file.getName())) {
 			PropertiesFileChecker propertiesFileChecker = new PropertiesFileChecker(file);
 
-			List<KeyInfo> keys = propertiesFileChecker.getInfos("liferay-versions");
+			List<PropertiesFileChecker.KeyInfo> keys = propertiesFileChecker.getInfos("liferay-versions");
 
 			if (ListUtil.isNotEmpty(keys)) {
-				KeyInfo key = keys.get(0);
+				PropertiesFileChecker.KeyInfo key = keys.get(0);
 
 				String versions = key.value;
 

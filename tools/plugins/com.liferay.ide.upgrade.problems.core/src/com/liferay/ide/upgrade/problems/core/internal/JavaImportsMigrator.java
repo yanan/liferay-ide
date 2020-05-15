@@ -37,6 +37,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -164,11 +165,11 @@ public abstract class JavaImportsMigrator extends AbstractFileMigrator<JavaFile>
 						gradleBuildScript.insertDependency(dependency);
 					}
 
-					String contents = gradleBuildScript.getFileContents(
-					).stream(
-					).collect(
-						Collectors.joining(System.lineSeparator())
-					);
+					List<String> fileContents = gradleBuildScript.getFileContents();
+
+					Stream<String> fileContentsStream = fileContents.stream();
+
+					String contents = fileContentsStream.collect(Collectors.joining(System.lineSeparator()));
 
 					Files.write(buildGradleFile.toPath(), contents.getBytes());
 				}
@@ -301,7 +302,7 @@ public abstract class JavaImportsMigrator extends AbstractFileMigrator<JavaFile>
 		catch (Exception e) {
 		}
 
-		return lines.toArray(new String[lines.size()]);
+		return lines.toArray(new String[0]);
 	}
 
 	private void _clearCache(File file) {
