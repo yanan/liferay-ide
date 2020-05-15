@@ -88,10 +88,7 @@ public class ConfigureTargetPlatformVersionCommand implements UpgradeCommand, Up
 
 		_updateTargetPlatformValue(tempFile);
 
-		UIUtil.async(
-			() -> {
-				_upgradeCompare.openCompareEditor(gradeProperties, tempFile);
-			});
+		UIUtil.async(() -> _upgradeCompare.openCompareEditor(gradeProperties, tempFile));
 	}
 
 	private File _getGradlePropertiesFile() {
@@ -116,13 +113,13 @@ public class ConfigureTargetPlatformVersionCommand implements UpgradeCommand, Up
 
 		String targetVersion = upgradePlan.getTargetVersion();
 
-		if ("7.0".equals(targetVersion)) {
+		if (targetVersion.equals("7.0")) {
 			targetPlatformVersion = WorkspaceConstants.liferayTargetPlatformVersions.get("7.0")[0];
 		}
-		else if ("7.1".equals(targetVersion)) {
+		else if (targetVersion.equals("7.1")) {
 			targetPlatformVersion = WorkspaceConstants.liferayTargetPlatformVersions.get("7.1")[0];
 		}
-		else if ("7.2".equals(targetVersion)) {
+		else if (targetVersion.equals("7.2")) {
 			targetPlatformVersion = WorkspaceConstants.liferayTargetPlatformVersions.get("7.2")[0];
 		}
 

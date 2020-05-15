@@ -38,7 +38,7 @@ public class OutlinePossibleValuesService extends PossibleValuesService implemen
 
 		List<String> outlineList = UpgradePlanCorePlugin.defaultUpgradePlanOutlines;
 
-		if (!"".equals(outlines)) {
+		if (!outlines.equals("")) {
 			outlineList = Arrays.asList(outlines.split(","));
 		}
 
