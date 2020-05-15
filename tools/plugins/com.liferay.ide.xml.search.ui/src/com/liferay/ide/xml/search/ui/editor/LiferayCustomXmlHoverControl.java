@@ -77,7 +77,7 @@ import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
  * @author Kuo Zhang
- * @see org.eclipse.m2e.editor.xml.internal.MarkerHoverControl.
+ * @see org.eclipse.m2e.editor.xml.internal.MarkerHoverControl
  */
 @SuppressWarnings("restriction")
 public class LiferayCustomXmlHoverControl
@@ -167,11 +167,13 @@ public class LiferayCustomXmlHoverControl
 
 	protected void createContent(Composite parent) {
 		_parent = parent;
+
 		GridLayout layout = new GridLayout(1, false);
 
 		layout.verticalSpacing = 0;
 		layout.marginWidth = 0;
 		layout.marginHeight = 0;
+
 		parent.setLayout(layout);
 	}
 
@@ -231,10 +233,10 @@ public class LiferayCustomXmlHoverControl
 					}
 				}
 				else if (reg instanceof InfoRegion) {
-					String text;
+					InfoRegion info = (InfoRegion)reg;
 
-					if ((text = ((InfoRegion)reg).getInfo()) != null) {
-						_setInformation(composite, text);
+					if (info.getInfo() != null) {
+						_setInformation(composite, info.getInfo());
 					}
 				}
 			}
@@ -397,10 +399,14 @@ public class LiferayCustomXmlHoverControl
 		Image image = null;
 
 		if (proposal instanceof ICompletionProposal) {
-			image = ((ICompletionProposal)proposal).getImage();
+			ICompletionProposal completionProposal = (ICompletionProposal)proposal;
+
+			image = completionProposal.getImage();
 		}
 		else if (proposal instanceof IMarkerResolution2) {
-			image = ((IMarkerResolution2)proposal).getImage();
+			IMarkerResolution2 markerResolution = (IMarkerResolution2)proposal;
+
+			image = markerResolution.getImage();
 		}
 
 		if (image != null) {
@@ -533,7 +539,9 @@ public class LiferayCustomXmlHoverControl
 		control.setFont(font);
 
 		if (control instanceof Composite) {
-			Control[] children = ((Composite)control).getChildren();
+			Composite compositeControl = (Composite)control;
+
+			Control[] children = compositeControl.getChildren();
 
 			for (Control child : children) {
 				_setColorAndFont(child, foreground, background, font);
@@ -586,8 +594,9 @@ public class LiferayCustomXmlHoverControl
 		}
 
 		if (presenter instanceof IInformationPresenterExtension) {
-			content = ((IInformationPresenterExtension)presenter).updatePresentation(
-				styledText, content, presentation, maxWidth, maxHeight);
+			IInformationPresenterExtension informationPresenter = (IInformationPresenterExtension)presenter;
+
+			content = informationPresenter.updatePresentation(styledText, content, presentation, maxWidth, maxHeight);
 		}
 
 		if (content != null) {

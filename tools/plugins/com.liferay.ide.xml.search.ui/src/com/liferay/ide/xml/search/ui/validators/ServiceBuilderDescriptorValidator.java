@@ -14,8 +14,10 @@
 
 package com.liferay.ide.xml.search.ui.validators;
 
-import com.liferay.ide.project.core.ValidationPreferences.ValidationType;
+import com.liferay.ide.project.core.ValidationPreferences;
 import com.liferay.ide.xml.search.ui.util.ValidatorUtil;
+
+import java.util.Objects;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
@@ -44,7 +46,7 @@ public class ServiceBuilderDescriptorValidator extends LiferayBaseValidator {
 		IXMLReference reference, IDOMNode node, IFile file, IValidator validator, IReporter reporter,
 		boolean batchMode) {
 
-		int severity = getServerity(ValidationType.SYNTAX_INVALID, file);
+		int severity = getServerity(ValidationPreferences.ValidationType.SYNTAX_INVALID, file);
 
 		if (severity == ValidationMessage.IGNORE) {
 			return true;
@@ -57,37 +59,35 @@ public class ServiceBuilderDescriptorValidator extends LiferayBaseValidator {
 
 			String parentNodeName = parentNode.getNodeName();
 
-			if (parentNodeName.equals("namespace")) {
-				String nodeValue = DOMUtils.getNodeValue(node);
+			if (Objects.equals(parentNodeName, "namespace") &&
+				!ValidatorUtil.isValidNamespace(DOMUtils.getNodeValue(node))) {
 
-				if (!ValidatorUtil.isValidNamespace(nodeValue)) {
-					validationMsg = getMessageText(ValidationType.SYNTAX_INVALID, node);
-				}
+				validationMsg = getMessageText(ValidationPreferences.ValidationType.SYNTAX_INVALID, node);
 			}
 		}
 		else if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
-			Element element = ((Attr)node).getOwnerElement();
+			Attr attrNode = (Attr)node;
 
-			if ("package-path".equals(node.getNodeName()) && "service-builder".equals(element.getNodeName())) {
-				String nodeValue = DOMUtils.getNodeValue(node);
+			Element element = attrNode.getOwnerElement();
 
-				if (nodeValue != null) {
+			if (Objects.equals("package-path", node.getNodeName()) &&
+				Objects.deepEquals("service-builder", element.getNodeName()) && (DOMUtils.getNodeValue(node) != null)) {
 
-					// Use standard java conventions to validate the package
-					// name
+				// Use standard java conventions to validate the package
+				// name
 
-					IStatus javaStatus = JavaConventions.validatePackageName(
-						nodeValue, CompilerOptions.VERSION_1_7, CompilerOptions.VERSION_1_7);
+				IStatus javaStatus = JavaConventions.validatePackageName(
+					DOMUtils.getNodeValue(node), CompilerOptions.VERSION_1_7, CompilerOptions.VERSION_1_7);
 
-					if ((javaStatus.getSeverity() == IStatus.ERROR) || (javaStatus.getSeverity() == IStatus.WARNING)) {
-						validationMsg = J2EECommonMessages.ERR_JAVA_PACAKGE_NAME_INVALID + javaStatus.getMessage();
-					}
+				if ((javaStatus.getSeverity() == IStatus.ERROR) || (javaStatus.getSeverity() == IStatus.WARNING)) {
+					validationMsg = J2EECommonMessages.ERR_JAVA_PACAKGE_NAME_INVALID + javaStatus.getMessage();
 				}
 			}
 		}
 
 		if (validationMsg != null) {
-			String liferayPluginValidationType = getLiferayPluginValidationType(ValidationType.SYNTAX_INVALID, file);
+			String liferayPluginValidationType = getLiferayPluginValidationType(
+				ValidationPreferences.ValidationType.SYNTAX_INVALID, file);
 
 			addMessage(
 				node, file, validator, reporter, batchMode, validationMsg, severity, liferayPluginValidationType);

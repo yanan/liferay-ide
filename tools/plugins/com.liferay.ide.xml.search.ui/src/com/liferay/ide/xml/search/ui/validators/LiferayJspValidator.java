@@ -19,10 +19,10 @@ import com.liferay.ide.core.LiferayCore;
 import com.liferay.ide.core.util.FileUtil;
 import com.liferay.ide.core.util.StringUtil;
 import com.liferay.ide.project.core.ValidationPreferences;
-import com.liferay.ide.project.core.ValidationPreferences.ValidationType;
 import com.liferay.ide.xml.search.ui.PortalLanguagePropertiesCacheUtil;
 import com.liferay.ide.xml.search.ui.XMLSearchConstants;
 
+import java.util.Objects;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IFile;
@@ -31,7 +31,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.sse.core.internal.validate.ValidationMessage;
-import org.eclipse.wst.validation.Validator.V2;
+import org.eclipse.wst.validation.Validator;
 import org.eclipse.wst.validation.internal.provisional.core.IMessage;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 import org.eclipse.wst.validation.internal.provisional.core.IValidator;
@@ -78,10 +78,10 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 
 			if (message != null) {
 				message.setAttribute(MARKER_QUERY_ID, querySpecificationId);
-				message.setAttribute(XMLSearchConstants.TEXT_CONTENT, textContent);
 				message.setAttribute(XMLSearchConstants.FULL_PATH, FileUtil.getFullPathPortableString(file));
-				message.setAttribute(XMLSearchConstants.MARKER_TYPE, XMLSearchConstants.LIFERAY_JSP_MARKER_ID);
 				message.setAttribute(XMLSearchConstants.LIFERAY_PLUGIN_VALIDATION_TYPE, liferayPluginValidationType);
+				message.setAttribute(XMLSearchConstants.MARKER_TYPE, XMLSearchConstants.LIFERAY_JSP_MARKER_ID);
+				message.setAttribute(XMLSearchConstants.TEXT_CONTENT, textContent);
 				message.setTargetObject(file);
 
 				reporter.addMessage(validator, message);
@@ -90,41 +90,44 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 	}
 
 	@Override
-	protected String getLiferayPluginValidationType(ValidationType validationType, IFile file) {
+	protected String getLiferayPluginValidationType(ValidationPreferences.ValidationType validationType, IFile file) {
 		String retval = null;
 
-		if (ValidationType.PROPERTY_NOT_FOUND.equals(validationType)) {
+		if (ValidationPreferences.ValidationType.PROPERTY_NOT_FOUND.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_PROPERTY_NOT_FOUND;
 		}
-		else if (ValidationType.METHOD_NOT_FOUND.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.METHOD_NOT_FOUND.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_METHOD_NOT_FOUND;
 		}
-		else if (ValidationType.REFERENCE_NOT_FOUND.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.REFERENCE_NOT_FOUND.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_REFERENCE_NOT_FOUND;
 		}
-		else if (ValidationType.RESOURCE_NOT_FOUND.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.RESOURCE_NOT_FOUND.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_RESOURCE_NOT_FOUND;
 		}
-		else if (ValidationType.STATIC_VALUE_UNDEFINED.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.STATIC_VALUE_UNDEFINED.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_STATIC_VALUE_UNDEFINED;
 		}
-		else if (ValidationType.TYPE_HIERARCHY_INCORRECT.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.TYPE_HIERARCHY_INCORRECT.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_TYPE_HIERARCHY_INCORRECT;
 		}
-		else if (ValidationType.TYPE_NOT_FOUND.equals(validationType)) {
+		else if (ValidationPreferences.ValidationType.TYPE_NOT_FOUND.equals(validationType)) {
 			retval = ValidationPreferences.LIFERAY_JSP_TYPE_NOT_FOUND;
 		}
 
 		return retval;
 	}
 
-	protected String getMessageText(ValidationType validationType, IXMLReferenceTo referenceTo, Node node, IFile file) {
-		if (StringUtil.equals("class", node) && validationType.equals(ValidationType.STATIC_VALUE_UNDEFINED)) {
+	protected String getMessageText(
+		ValidationPreferences.ValidationType validationType, IXMLReferenceTo referenceTo, Node node, IFile file) {
+
+		if (StringUtil.equals("class", node) &&
+			validationType.equals(ValidationPreferences.ValidationType.STATIC_VALUE_UNDEFINED)) {
+
 			return NLS.bind(MESSAGE_CLASS_ATTRIBUTE_NOT_WORK, null);
 		}
-		else {
-			return super.getMessageText(validationType, referenceTo, node, file);
-		}
+
+		return super.getMessageText(validationType, referenceTo, node, file);
 	}
 
 	@Override
@@ -154,7 +157,7 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 	}
 
 	@Override
-	protected int getServerity(ValidationType validationType, IFile file) {
+	protected int getServerity(ValidationPreferences.ValidationType validationType, IFile file) {
 		int retval = -1;
 		String liferayPluginValidationType = getLiferayPluginValidationType(validationType, file);
 
@@ -176,8 +179,10 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 	protected void setMarker(IValidator validator, IFile file) {
 		String extension = file.getFileExtension();
 
-		if ((validator instanceof XMLReferencesBatchValidator) && extension.equals("jsp")) {
-			V2 parent = ((XMLReferencesBatchValidator)validator).getParent();
+		if ((validator instanceof XMLReferencesBatchValidator) && Objects.equals(extension, "jsp")) {
+			XMLReferencesBatchValidator xmlValidator = (XMLReferencesBatchValidator)validator;
+
+			Validator.V2 parent = xmlValidator.getParent();
 
 			parent.setMarkerId(XMLSearchConstants.LIFERAY_JSP_MARKER_ID);
 		}
@@ -245,7 +250,7 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 				try {
 					String languageValue = (String)properties.get(languageKey);
 
-					if (!languageValue.equals("")) {
+					if (!Objects.equals(languageValue, "")) {
 						addMessage = false;
 					}
 				}
@@ -254,7 +259,7 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 			}
 
 			if (addMessage) {
-				ValidationType validationType = getValidationType(referenceTo, nbElements);
+				ValidationPreferences.ValidationType validationType = getValidationType(referenceTo, nbElements);
 
 				int severity = getServerity(validationType, file);
 
@@ -285,12 +290,12 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 
 				boolean addMessage = false;
 
-				if (nodeValue.equals("class")) {
+				if (Objects.equals(nodeValue, "class")) {
 					addMessage = true;
 				}
 
 				if (addMessage) {
-					ValidationType validationType = getValidationType(referenceTo, 0);
+					ValidationPreferences.ValidationType validationType = getValidationType(referenceTo, 0);
 
 					int severity = getServerity(validationType, file);
 
@@ -323,7 +328,7 @@ public class LiferayJspValidator extends LiferayBaseValidator {
 
 	private boolean _isSupportedTag(String tagName) {
 		for (String supportTag : _supported_tags) {
-			if (supportTag.equals(tagName)) {
+			if (Objects.equals(supportTag, tagName)) {
 				return true;
 			}
 		}
