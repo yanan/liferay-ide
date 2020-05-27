@@ -17,10 +17,14 @@ package com.liferay.ide.project.core.tests.workspace;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import com.liferay.ide.core.tests.TestUtil;
 import com.liferay.ide.core.util.CoreUtil;
 import com.liferay.ide.core.util.PropertiesUtil;
 import com.liferay.ide.core.workspace.LiferayWorkspaceUtil;
 import com.liferay.ide.core.workspace.WorkspaceConstants;
+import com.liferay.ide.project.core.modules.NewLiferayModuleProjectOp;
+import com.liferay.ide.project.core.modules.NewLiferayModuleProjectOpMethods;
 import com.liferay.ide.project.core.tests.ProjectCoreBase;
 import com.liferay.ide.project.core.workspace.NewLiferayWorkspaceOp;
 import com.liferay.ide.project.core.workspace.NewLiferayWorkspaceOpMethods;
@@ -72,6 +76,18 @@ public class LiferayWorkspaceUtilTests extends ProjectCoreBase
         }
 
         waitForBuildAndValidation();
+
+        NewLiferayModuleProjectOp mop = NewLiferayModuleProjectOp.TYPE.instantiate();
+
+        mop.setProjectName( "action-command-test" );
+        mop.setProjectTemplateName( "api" );
+        mop.setProjectProvider( "gradle-module" );
+
+        Status modulePorjectStatus = NewLiferayModuleProjectOpMethods.execute( mop, ProgressMonitorBridge.create( new NullProgressMonitor() ) );
+
+        assertTrue( modulePorjectStatus.ok() );
+
+        TestUtil.waitForBuildAndValidation();
 
         IProject workspaceProject = CoreUtil.getProject( "test-liferay-workspace" );
 
