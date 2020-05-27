@@ -17,8 +17,6 @@ package com.liferay.ide.project.core.tests.workspace;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import com.liferay.ide.core.tests.TestUtil;
 import com.liferay.ide.core.util.CoreUtil;
 import com.liferay.ide.core.util.PropertiesUtil;
 import com.liferay.ide.core.workspace.LiferayWorkspaceUtil;
@@ -34,6 +32,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.sapphire.modeling.Status;
 import org.eclipse.sapphire.platform.ProgressMonitorBridge;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -67,11 +66,12 @@ public class LiferayWorkspaceUtilTests extends ProjectCoreBase
 
         if( op.validation().ok() )
         {
-            NewLiferayWorkspaceOpMethods.execute( op, ProgressMonitorBridge.create( new NullProgressMonitor() ) );
+            Status workspacePorjectStatus = NewLiferayWorkspaceOpMethods.execute( op, ProgressMonitorBridge.create( new NullProgressMonitor() ) );
+
+            assertTrue( workspacePorjectStatus.ok() );
         }
 
         waitForBuildAndValidation();
-        TestUtil.waitForBuildAndValidation();
 
         IProject workspaceProject = CoreUtil.getProject( "test-liferay-workspace" );
 
@@ -113,7 +113,6 @@ public class LiferayWorkspaceUtilTests extends ProjectCoreBase
         workspaceProject.refreshLocal( IResource.DEPTH_INFINITE, new NullProgressMonitor() );
 
         homeValue = LiferayWorkspaceUtil.getHomeDir( workspaceLocation );
-
 
         assertTrue( homeValue.equals( "bundles1" ) );
 
