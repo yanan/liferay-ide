@@ -18,6 +18,7 @@ package com.liferay.ide.project.core.tests.workspace;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.liferay.ide.core.tests.TestUtil;
 import com.liferay.ide.core.util.CoreUtil;
 import com.liferay.ide.core.util.PropertiesUtil;
 import com.liferay.ide.core.workspace.LiferayWorkspaceUtil;
@@ -70,6 +71,7 @@ public class LiferayWorkspaceUtilTests extends ProjectCoreBase
         }
 
         waitForBuildAndValidation();
+        TestUtil.waitForBuildAndValidation();
 
         IProject workspaceProject = CoreUtil.getProject( "test-liferay-workspace" );
 
