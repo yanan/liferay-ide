@@ -51,8 +51,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 		op.setWorkspaceName(workspace.getName());
 		op.setProjectProvider(provider());
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		deleteProject(workspace.getName());
 	}
@@ -69,8 +68,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 
 		op.setServerName(workspace.getName());
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		IProject workspaceProject = CoreUtil.getProject(workspace.getName());
 
@@ -101,8 +99,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 
 		Assert.assertEquals(defaultBundleUrl, bundleUrl);
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		MavenTestUtil.waitForJobsToComplete();
 
@@ -136,8 +133,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 		op.setProjectProvider(provider());
 		op.setLocation(workspaceLocation.toPortableString());
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		IProject workspaceProject = CoreUtil.getProject(workspace.getName());
 
@@ -173,8 +169,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 		op.setProjectProvider(provider());
 		op.setLocation(workspaceLocation.toPortableString());
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		IProject workspaceProject = CoreUtil.getProject(workspace.getName());
 
@@ -214,8 +209,7 @@ public class NewLiferayWorkspaceMavenTests extends ProjectOpBase<NewLiferayWorks
 		op.setProvisionLiferayBundle(true);
 		op.setBundleUrl(bundleUrl);
 
-		createOrImportAndBuild(
-			op, workspace.getName(), "Maven Liferay Workspace would not support Target Platform.", true);
+		createOrImportAndBuild(op, workspace.getName(), "Create a new liferay workspace", true);
 
 		MavenTestUtil.waitForJobsToComplete();
 
