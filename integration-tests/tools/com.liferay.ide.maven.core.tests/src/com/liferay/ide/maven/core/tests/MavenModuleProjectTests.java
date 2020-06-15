@@ -30,6 +30,8 @@ import com.liferay.ide.project.core.modules.NewLiferayModuleProjectOp;
 import com.liferay.ide.project.core.modules.NewLiferayModuleProjectOpMethods;
 import com.liferay.ide.project.core.modules.PropertyKey;
 import com.liferay.ide.project.core.util.SearchFilesVisitor;
+import com.liferay.ide.project.core.workspace.NewLiferayWorkspaceOp;
+import com.liferay.ide.project.core.workspace.NewLiferayWorkspaceOpMethods;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -65,7 +67,8 @@ import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.sapphire.Value;
 import org.eclipse.sapphire.modeling.Status;
 import org.eclipse.sapphire.platform.ProgressMonitorBridge;
-
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -73,6 +76,26 @@ import org.junit.Test;
  */
 @SuppressWarnings("restriction")
 public class MavenModuleProjectTests extends AbstractMavenProjectTestCase {
+
+	@BeforeClass
+	public static void createLiferayWorkspace() {
+		NewLiferayWorkspaceOp op = NewLiferayWorkspaceOp.TYPE.instantiate();
+
+		op.setWorkspaceName("liferay-maven-workspace");
+		op.setProjectProvider("maven-liferay-workspace");
+
+		NewLiferayWorkspaceOpMethods.execute(op, ProgressMonitorBridge.create(new NullProgressMonitor()));
+	}
+
+
+	@AfterClass
+	public static void deleteWorksapceProject() throws CoreException {
+		IProgressMonitor monitor = new NullProgressMonitor();
+
+		for (IProject project : CoreUtil.getAllProjects()) {
+			project.delete(true, monitor);
+		}
+	}
 
 	@Test
 	public void testMavenDependencyUpdate() throws Exception {
