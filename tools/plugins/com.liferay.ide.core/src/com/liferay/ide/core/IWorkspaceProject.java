@@ -28,6 +28,10 @@ public interface IWorkspaceProject extends ILiferayProject {
 
 	public Set<IProject> getChildProjects();
 
+	public default String getDefaultWarDirs() {
+		return "wars";
+	}
+
 	public String getLiferayHome();
 
 	public default List<Artifact> getTargetPlatformArtifacts() {

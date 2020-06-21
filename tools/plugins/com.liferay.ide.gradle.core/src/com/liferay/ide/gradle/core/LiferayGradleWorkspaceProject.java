@@ -120,6 +120,58 @@ public class LiferayGradleWorkspaceProject extends LiferayWorkspaceProject imple
 	}
 
 	@Override
+	public String getDefaultWarDirs() {
+		IProject project = getProject();
+
+		IFile settingsGradleFile = project.getFile("settings.gradle");
+
+		GradleBuildScript gradleBuildScript = null;
+
+		try {
+			gradleBuildScript = new GradleBuildScript(FileUtil.getFile(settingsGradleFile));
+		}
+		catch (IOException ioe) {
+		}
+
+		String workspacePluginVersion = Optional.ofNullable(
+			gradleBuildScript
+		).flatMap(
+			buildScript -> {
+				List<GradleDependency> dependencies = buildScript.getBuildScriptDependencies();
+
+				return dependencies.stream(
+				).filter(
+					dep -> "com.liferay".equals(dep.getGroup())
+				).filter(
+					dep -> "com.liferay.gradle.plugins.workspace".equals(dep.getName())
+				).filter(
+					dep -> CoreUtil.isNotNullOrEmpty(dep.getVersion())
+				).map(
+					dep -> dep.getVersion()
+				).findFirst();
+			}
+		).get();
+
+		if (CoreUtil.compareVersions(Version.parseVersion(workspacePluginVersion), new Version("2.5.0")) < 0) {
+			String[] warsNames = LiferayWorkspaceUtil.getWarsDirs(project);
+
+			return warsNames[0];
+		}
+		else {
+			IPath workspaceLocation = project.getLocation();
+
+			String defaultModulesDir = LiferayWorkspaceUtil.getGradleProperty(
+				workspaceLocation.toOSString(), WorkspaceConstants.MODULES_DIR_PROPERTY, "modules");
+
+			if (StringUtil.equals(defaultModulesDir, "*")) {
+				return null;
+			}
+
+			return defaultModulesDir;
+		}
+	}
+
+	@Override
 	public String getLiferayHome() {
 		return getProperty(WorkspaceConstants.HOME_DIR_PROPERTY, WorkspaceConstants.DEFAULT_HOME_DIR);
 	}
