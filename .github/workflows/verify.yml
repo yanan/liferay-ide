@@ -62,12 +62,18 @@ jobs:
         run: |
           ./run-tests.sh
       - name: Run reporter
+        run: |
+          git checkout -b ${{ github.head_ref }}
+          git push origin ${{ github.head_ref }}
         uses: check-run-reporter/action@v1.1.0
         if: ${{ always() }}
         env:
           CHECK_RUN_REPORTER_LABEL: "Maven surefire test reports"
           CHECK_RUN_REPORTER_REPORT: "**/TEST-*.xml"
           CHECK_RUN_REPORTER_TOKEN: ${{ secrets.check_run_reporter_token }}
+        run: |
+          git branch -D ${{ github.head_ref }}
+          git push -f origin :${{ github.head_ref }}
       - name: Upload tests
         uses: actions/upload-artifact@v1
         if: ${{ always() }}
