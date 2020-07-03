@@ -19,6 +19,7 @@ import com.liferay.ide.project.core.workspace.NewLiferayWorkspaceOp;
 import com.liferay.ide.test.core.base.support.LiferayWorkspaceSupport;
 import com.liferay.ide.test.project.core.base.ProjectOpBase;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -34,8 +35,15 @@ public class NewLiferayWorkspaceGradleTests extends ProjectOpBase<NewLiferayWork
 
 		op.setWorkspaceName(workspace.getName());
 		op.setProjectProvider(provider());
+        
+        waitForBuildAndValidation();
+        Thread.sleep(60000);
+        
+        Assert.assertTrue(op.validation().ok());
 
-		createOrImportAndBuild(op, workspace.getName());
+        createOrImportAndBuild(op, workspace.getName());
+
+        waitForBuildAndValidation();
 
 		deleteProject(workspace.getName());
 	}
