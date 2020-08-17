@@ -121,6 +121,10 @@ public class BladeCLITests
 
         assertNotNull( projectTemplates );
 
+        for(String pt : projectTemplates) {
+        	System.out.println(pt+"11111");
+        }
+        
         assertTrue( projectTemplates[0], projectTemplates[0].startsWith("api"));
 
         assertTrue(
