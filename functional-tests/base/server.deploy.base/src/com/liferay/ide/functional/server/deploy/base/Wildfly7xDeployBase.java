@@ -44,6 +44,18 @@ public abstract class Wildfly7xDeployBase extends ServerTestBase {
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
 
+		viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+		String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+		editorAction.setText(editorAction.getContent() + "\n" + text);
+
+		editorAction.save();
+
+		jobAction.waitForNoRunningJobs();
+
+		editorAction.close();
+
 		viewAction.servers.openAddAndRemoveDialog(wildfly.getStartedLabel());
 
 		dialogAction.addAndRemove.addModule(project.getName());

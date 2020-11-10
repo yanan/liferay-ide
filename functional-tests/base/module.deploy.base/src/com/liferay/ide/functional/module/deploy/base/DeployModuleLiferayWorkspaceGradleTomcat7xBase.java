@@ -112,6 +112,20 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
 
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
+
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
 		dialogAction.addAndRemove.addModule(project.getName());
@@ -137,6 +151,20 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 		wizardAction.finish();
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
+
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
 
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
@@ -164,6 +192,20 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
 
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
+
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
 		dialogAction.addAndRemove.addModule(project.getName());
@@ -190,6 +232,20 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
 
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
+
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
 		dialogAction.addAndRemove.addModule(project.getName());
@@ -215,6 +271,22 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 		wizardAction.finish();
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
+
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text =
+				"configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}\n" +
+					"configurations.all {resolutionStrategy.force 'javax.ws.rs:javax.ws.rs-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
 
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
@@ -321,6 +393,20 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 		wizardAction.finish();
 
 		jobAction.waitForNoRunningProjectBuildingJobs();
+
+		if (getVersion().equals("7.0")) {
+			viewAction.project.openFile(getLiferayWorkspace().getName(), "modules", project.getName(), "build.gradle");
+
+			String text = "configurations.all {resolutionStrategy.force 'javax.portlet:portlet-api:2.0'}";
+
+			editorAction.setText(editorAction.getContent() + "\n" + text);
+
+			editorAction.save();
+
+			jobAction.waitForNoRunningJobs();
+
+			editorAction.close();
+		}
 
 		viewAction.servers.openAddAndRemoveDialog(getStartedLabel());
 
@@ -455,5 +541,7 @@ public abstract class DeployModuleLiferayWorkspaceGradleTomcat7xBase extends Ser
 	protected abstract String getServerName();
 
 	protected abstract String getStartedLabel();
+
+	protected abstract String getVersion();
 
 }
