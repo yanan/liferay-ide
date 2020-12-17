@@ -59,6 +59,8 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: enable xhost
+        run: xhost +
       - name: Run tests
         shell: bash
         run: |
