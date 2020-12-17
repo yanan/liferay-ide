@@ -13,6 +13,8 @@ function checkError {
 		exit $retcode
 	fi
 }
+echo 888888888888888888
+dpkg -l libgtk[0-9]* | grep ^i
 echo 999999999999999
 cat /etc/security/limits.conf
 echo 000
