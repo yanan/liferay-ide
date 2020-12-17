@@ -33,7 +33,7 @@ jobs:
       - name: Checkout liferay-ide
         uses: actions/checkout@v2
       - name: Setup kernel for react native, increase watchers
-        run: sudo sysctl kernel.pid_max=126820
+        run: ulimit -n 90000
       - name: Checkout liferay-ide-m2-repository
         uses: actions/checkout@v2
         with:
