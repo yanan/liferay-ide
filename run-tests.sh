@@ -13,7 +13,8 @@ function checkError {
 		exit $retcode
 	fi
 }
-
+echo 000
+ulimit -aH
 cat /proc/sys/fs/file-max
 who
 ulimit -Hn
