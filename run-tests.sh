@@ -15,10 +15,13 @@ function checkError {
 }
 
 cat /proc/sys/fs/file-max
+who
 ulimit -Hn
 ulimit -Hn
 
-sudo sysctl -w fs.file-max=3245643
+sudo sysctl -w fs.file-max=5000000
+ulimit -Hn
+ulimit -Hn
 ./mvnw clean --fail-at-end -e -Dmaven.repo.local=${GITHUB_WORKSPACE}/liferay-ide-m2-repository verify -Dliferay.bundles.dir="./tests-resources"
 
 checkError
