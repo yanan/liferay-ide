@@ -35,6 +35,7 @@ cat /proc/self/limits
 export DISPLAY=:0
 echo 666666666
 sudo ulimit -n 90000
+xhost +
 ./mvnw clean --fail-at-end -e -Dmaven.repo.local=${GITHUB_WORKSPACE}/liferay-ide-m2-repository verify -Dliferay.bundles.dir="./tests-resources"
 
 checkError
