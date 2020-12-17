@@ -27,6 +27,7 @@ echo 1111
 sudo sysctl kernel.pid_max=126820
 echo 2222
 cat /proc/self/limits
+export DISPLAY=:0
 ./mvnw clean --fail-at-end -e -Dmaven.repo.local=${GITHUB_WORKSPACE}/liferay-ide-m2-repository verify -Dliferay.bundles.dir="./tests-resources"
 
 checkError
