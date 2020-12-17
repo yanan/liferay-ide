@@ -13,6 +13,8 @@ function checkError {
 		exit $retcode
 	fi
 }
+echo 999999999999999
+cat /etc/security/limits.conf
 echo 000
 ulimit -aH
 cat /proc/sys/fs/file-max
