@@ -99,8 +99,9 @@ jobs:
       - name: Run tests
         shell: bash
         run: |
+          cd /home/runner/work/liferay-ide/liferay-ide
           ls　-al
-          ls tests-resources
+          ls /home/runner/work/liferay-ide/liferay-idetests-resources
           #./mvnw clean package -DskipTests=true
           #./mvnw -f ./integration-tests/pom.xml -Ptests-repo verify -Dliferay-ide-site="file:///home/runner/work/liferay-ide/liferay-ide//build/com.liferay.ide-repository/target/repository/"
           ＃./mvnw -f ./integration-tests/pom.xml verify -Dliferay-ide-site="file:///home/runner/work/liferay-ide/liferay-ide/build/com.liferay.ide-repository/target/repository/" -Pintegration-tests
