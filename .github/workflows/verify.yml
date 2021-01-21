@@ -99,6 +99,6 @@ jobs:
       - name: Run tests
         shell: bash
         run: |
-          ./mvnw clean package
+          ./mvnw clean package -DskipTests=true
           ./mvnw -f ./integration-tests/pom.xml -Ptests-repo verify -Dliferay-ide-site="file:///home/runner/work/liferay-ide/liferay-ide//build/com.liferay.ide-repository/target/repository/"
           ./mvnw -f ./integration-tests/pom.xml verify -Dliferay-ide-site="file:///home/runner/work/liferay-ide/liferay-ide/build/com.liferay.ide-repository/target/repository/" -Pintegration-tests
